@@ -41,4 +41,4 @@ Abra em seu navegador o endereço abaixo e acompanhe as pesagens
 
 ---
 
-Desenvolvido por [Larissa Perinoto](hhtps://www.linkedin.com/in/larissaperinoto).
+Desenvolvido por [Larissa Perinoto](https://www.linkedin.com/in/larissaperinoto).
