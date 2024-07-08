@@ -1,0 +1,38 @@
+.orderCard {
+  background-color: #ffffff;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 1%;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+.cardTitle {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.modal {
+  width: 50%;
+  margin: auto;
+  margin-top: 20%;
+  padding: 2%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 26px;
+}
+
+.modalTitle {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.modalWeight {
+  font-size: 28px;
+  font-weight: 600;
+  color: red;
+}
