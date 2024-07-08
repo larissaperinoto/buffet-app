@@ -1,6 +1,6 @@
-import { SerialPort } from "serialport";
+import { SerialPort, SerialPortOpenOptions } from "serialport";
 
-enum Units {
+export enum Units {
   KG = "kg",
   G = "g",
 }
@@ -13,7 +13,7 @@ export class Scale {
   private previosWeight = 0;
 
   constructor(
-    serialPortConfig: Record<string, string>,
+    serialPortConfig: SerialPortOpenOptions<any>,
     unitOfMeasurement: Units
   ) {
     this.serialPort = new SerialPort(serialPortConfig, (err) => {
@@ -30,31 +30,35 @@ export class Scale {
     this.unitOfMeasurement = unitOfMeasurement;
   }
 
-  private convertToKg(weight: number) {
+  private convertToKg(weight: number): number {
     return Math.round((weight / 1000) * 100000) / 100000;
   }
 
-  public getCurrentWeight() {
+  public getCurrentWeight(): number {
     if (this.unitOfMeasurement === Units.G) {
       return this.convertToKg(this.currentWeight);
     }
 
-    +this.currentWeight;
+    return this.currentWeight;
   }
 
-  public getPreviousWeight() {
+  public getPreviousWeight(): number {
     if (this.unitOfMeasurement === Units.G) {
       return this.convertToKg(this.previosWeight);
     }
 
-    +this.previosWeight;
+    return this.previosWeight;
   }
 
-  public getMeasureSeconds() {
+  public setPreviosWeight(weight: number): void {
+    this.previosWeight = weight;
+  }
+
+  public getMeasureSeconds(): number {
     return this.measureSeconds;
   }
 
-  public setMeasureseconds(seconds: number) {
+  public setMeasureseconds(seconds: number): void {
     this.measureSeconds = seconds;
   }
 }
