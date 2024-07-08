@@ -17,7 +17,7 @@ function changeState() {
       state = place;
       break;
     case place:
-      foodWeight = min_comida + Math.random() * maxFood;
+      foodWeight = minFood + Math.random() * maxFood;
       state = placed;
       break;
     case placed:
