@@ -9,7 +9,7 @@ export class Scale {
   private serialPort: SerialPort;
   private unitOfMeasurement = "";
   private currentWeight = 0;
-  private measureSeconds = 0;
+  private measuredSeconds = 0;
   private previosWeight = 0;
 
   constructor(
@@ -54,11 +54,11 @@ export class Scale {
     this.previosWeight = weight;
   }
 
-  public getMeasureSeconds(): number {
-    return this.measureSeconds;
+  public getMeasuredSeconds(): number {
+    return this.measuredSeconds;
   }
 
-  public setMeasureseconds(seconds: number): void {
-    this.measureSeconds = seconds;
+  public setMeasuredSeconds(seconds: number): void {
+    this.measuredSeconds = seconds;
   }
 }

@@ -13,13 +13,15 @@ export class Meal {
       for (const scale of this.buffet.scaleList) {
         const currentWeight = scale.getCurrentWeight();
         let previousWeight = scale.getPreviousWeight();
-        let measureSeconds = scale.getMeasureSeconds();
+        let measuredSeconds = scale.getMeasuredSeconds();
 
-        if (previousWeight === currentWeight && currentWeight > 0) {
-          measureSeconds = measureSeconds += time;
+        if (previousWeight === currentWeight) {
+          measuredSeconds = measuredSeconds += time;
         } else {
-          measureSeconds = 0;
+          measuredSeconds = 0;
         }
+
+        scale.setMeasuredSeconds(measuredSeconds);
 
         const buffetType = this.generateBuffetType(currentWeight);
         const total = this.generateTotal(currentWeight);
@@ -30,9 +32,9 @@ export class Meal {
 
         const datetime = new Date().toLocaleString("pt-BR");
 
-        if (measureSeconds >= orderSeconds) {
+        if (measuredSeconds >= orderSeconds) {
           this.socket.emit(
-            "order",
+            "meal",
             JSON.stringify({
               weight: currentWeight,
               buffetType,
@@ -40,12 +42,9 @@ export class Meal {
               datetime,
             })
           );
-          previousWeight = 0;
-          measureSeconds = 0;
+          scale.setPreviosWeight(0);
+          scale.setMeasuredSeconds(0);
         }
-
-        scale.setMeasureseconds(measureSeconds);
-        scale.setPreviosWeight(previousWeight);
       }
     }, time);
   }

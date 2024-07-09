@@ -37,7 +37,7 @@ export class WebsocketService {
 
   getOrder() {
     return new Observable((observer) => {
-      this.socket.on('meals', (message) => {
+      this.socket.on('meal', (message) => {
         observer.next(message);
       });
     });
