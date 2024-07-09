@@ -31,15 +31,15 @@ Inicie o simulador de balança
 
         npm run start:scale
 
-Dentro de **/server** se encontra o arquivo **.env-example** com a configuração abaixo.
+Dentro de **/server** se encontra o arquivo **.env-example** com a configuração abaixo
 
-                SOCKET_PORT=3001
-                DETECTION_INTERVAL=4000
-                PER_KG_BUFFET_PRICE=59.90
-                OPEN_BUFFET_PRICE=29.90
-                SCALE_1_PATH=/dev/ttyScale
+        SOCKET_PORT=3001
+        DETECTION_INTERVAL=4000
+        PER_KG_BUFFET_PRICE=59.90
+        OPEN_BUFFET_PRICE=29.90
+        SCALE_1_PATH=/dev/ttyScale
 
-Renomeie o arquivo para **.env**. Caso seja necessário, ajuste os valores do buffet por kg (PER_KG_BUFFET_PRICE) e buffet livre (OPEN_BUFFET_PRICE).
+Renomeie o arquivo para **.env**. Caso seja necessário, ajuste os valores do buffet por kg (PER_KG_BUFFET_PRICE) e buffet livre (OPEN_BUFFET_PRICE)
 
 Na raiz do projeto, inicie o servidor com o comando abaixo
 
