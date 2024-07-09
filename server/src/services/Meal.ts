@@ -1,22 +1,29 @@
 import { Buffet } from "./Buffet";
 import { SocketService } from "./Socket";
 
+enum BuffetCategories {
+  PER_KG = "Buffet por quilo",
+  OPEN = "Buffet livre",
+}
+
 export class Meal {
-  private socket = new SocketService(3001);
+  private socket = new SocketService(
+    +(process.env.SOCKET_PORT as string) ?? 3001
+  );
 
   constructor(private buffet: Buffet) {}
 
   public detectMeal() {
-    const orderSeconds = 4000;
-    const time = 300;
+    const orderSeconds = +(process.env.DETECTION_INTERVAL as string) ?? 4000;
+    const interval = 300;
     setInterval(() => {
-      for (const scale of this.buffet.scaleList) {
+      for (const scale of this.buffet.getScaleList()) {
         const currentWeight = scale.getCurrentWeight();
         let previousWeight = scale.getPreviousWeight();
         let measuredSeconds = scale.getMeasuredSeconds();
 
         if (previousWeight === currentWeight) {
-          measuredSeconds = measuredSeconds += time;
+          measuredSeconds = measuredSeconds += interval;
         } else {
           measuredSeconds = 0;
         }
@@ -46,16 +53,16 @@ export class Meal {
           scale.setMeasuredSeconds(0);
         }
       }
-    }, time);
+    }, interval);
   }
 
   private generateTotal(weight: number) {
     let total = 0;
 
-    const totalPerKg = weight * this.buffet.perKgPrice;
+    const totalPerKg = weight * this.buffet.getPerKgPrice();
 
-    if (totalPerKg > this.buffet.openPrice) {
-      total = this.buffet.openPrice;
+    if (totalPerKg > this.buffet.getOpenPrice()) {
+      total = this.buffet.getOpenPrice();
     } else {
       total = totalPerKg;
     }
@@ -70,10 +77,10 @@ export class Meal {
   private generateBuffetType(weight: number) {
     let buffetType = "";
 
-    if (weight * this.buffet.perKgPrice > this.buffet.openPrice) {
-      buffetType = "Buffet livre";
+    if (weight * this.buffet.getPerKgPrice() > this.buffet.getOpenPrice()) {
+      buffetType = BuffetCategories.OPEN;
     } else {
-      buffetType = "Buffet por quilo";
+      buffetType = BuffetCategories.PER_KG;
     }
 
     return buffetType;
