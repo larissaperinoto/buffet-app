@@ -6,7 +6,7 @@
     "install": "npm i --prefix app && npm i --prefix server",
     "start:app": "npm start --prefix app",
     "start:scale": "npm run start:scale --prefix server",
-    "start:server": "npm run build --prefix server && npm start:prod --prefix server",
+    "start:server": "npm run build --prefix server && npm run start:prod --prefix server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
