@@ -12,6 +12,7 @@ A aplicação é um sistema full stack que monitora os pesos registratos por bal
 #### Pré requisitos para rodar o projeto
 
 - Node.Js (versão >= 18.19)
+- [Socat](https://linux.die.net/man/1/socat)
 
 #### Rodando o projeto localmente
 
